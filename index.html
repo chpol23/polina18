@@ -1,4 +1,4 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#c94a74"><meta property="og:title" content="Полина 18 · Семейный ужин"><meta property="og:description" content="23 октября, 19:00 · ресторан «Мидийное место»"></head><body>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#c94a74"><meta property="og:title" content="Полина 18 · Семейный ужин"><meta property="og:description" content="23 октября, 18:00 · ресторан «Мидийное место»"></head><body>
 <title>Полина 18 · Семейный ужин</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap">
@@ -21,6 +21,8 @@ body { margin: 0; background: var(--ground); color: var(--ink); font-family: var
 .card { position: relative; max-width: 460px; margin: 0 auto; background: var(--paper); border-radius: 22px; overflow: hidden;
   box-shadow: 0 40px 80px -20px rgba(160, 40, 85, .30), 0 10px 30px rgba(160, 40, 85, .10); text-align: center; }
 #glitter { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+.kicker, .name, .age, .foot span { position: relative; z-index: 6; }
+.cake { z-index: 6; }
 
 /* Шапка */
 .hero { position: relative; background: var(--navy); color: #fff; height: 400px; padding-top: 44px; overflow: hidden; }
@@ -127,7 +129,7 @@ h1 { margin: 0; font-family: var(--script); font-weight: 400; font-size: 46px; l
     <h1 class="reveal">Дорогие мои!</h1>
     <p class="text reveal">Я хочу провести этот вечер с самыми родными людьми. Буду счастлива видеть каждого из вас на семейном ужине.</p>
     <div class="date reveal">23.10.2026</div>
-    <div class="when reveal">Пятница · 19:00</div>
+    <div class="when reveal">Пятница · 18:00</div>
     <svg class="bow" viewBox="0 0 120 120" width="108" height="108" aria-hidden="true"><use href="#bow"/></svg>
     <div class="place-label reveal">Ресторан</div>
     <div class="place reveal">«Мидийное место»</div>
@@ -135,7 +137,7 @@ h1 { margin: 0; font-family: var(--script); font-weight: 400; font-size: 46px; l
   </section>
 
   <svg class="tear bottom" data-tear="up" viewBox="0 0 460 26" preserveAspectRatio="none" aria-hidden="true"></svg>
-  <footer class="foot">с любовью, Полина</footer>
+  <footer class="foot"><span>с любовью</span></footer>
 </article>
 
 <script>
@@ -161,39 +163,61 @@ h1 { margin: 0; font-family: var(--script); font-weight: 400; font-size: 46px; l
     items.forEach(function (el, i) { el.style.animationDelay = (i % 4) * 0.08 + 's'; io.observe(el); });
   }
 
-  // Блёстки поверх всего
+  // Воздушные шары: летят вверх только по розовому фону (шапка и подвал)
   var card = document.querySelector('.card'), c = document.getElementById('glitter'), ctx = c.getContext('2d');
   var hero = document.querySelector('.hero'), foot = document.querySelector('.foot');
-  var W = 0, H = 0, sparks = [];
-  function onNavy(y) { return y < hero.offsetHeight || y > foot.offsetTop - 10; }
-  function make(initial) {
-    var y = Math.random() * H;
-    return { x: Math.random() * W, y: y, r: Math.random() * 1.2 + .3, p: Math.random() * 6.28, sp: .6 + Math.random() * 1.6,
-      vy: .05 + Math.random() * .18, vx: (Math.random() - .5) * .08, star: Math.random() < .09 };
+  var W = 0, H = 0, zones = [], balloons = [];
+  var COLORS = ['#ffffff', '#ffd3e0', '#ffb3c9', '#ffe2b8', '#f7c6ff', '#ff94b4'];
+  function balloon(z, scatter) {
+    var r = 11 + Math.random() * 13;
+    return { z: z, r: r, x: 12 + Math.random() * (W - 24),
+      y: scatter ? z.top + Math.random() * (z.bottom - z.top) : z.bottom + r * 3 + Math.random() * 60,
+      v: .25 + Math.random() * .35, a: .35 + Math.random() * .25, p: Math.random() * 6.28, sw: 4 + Math.random() * 8,
+      col: COLORS[Math.floor(Math.random() * COLORS.length)] };
   }
   function size() {
     var dpr = window.devicePixelRatio || 1;
     W = card.offsetWidth; H = card.offsetHeight;
     c.width = W * dpr; c.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    sparks = []; for (var i = 0; i < Math.round(W * H / 2000); i++) sparks.push(make());
+    zones = [{ top: 0, bottom: hero.offsetHeight, n: 9 }, { top: foot.offsetTop, bottom: H, n: 3 }];
+    balloons = [];
+    zones.forEach(function (z) { for (var i = 0; i < z.n; i++) balloons.push(balloon(z, true)); });
     if (still) draw(0);
+  }
+  function drawBalloon(b, t) {
+    var x = b.x + Math.sin(t / 1400 + b.p) * b.sw, y = b.y, r = b.r, rx = r, ry = r * 1.2;
+    var tilt = Math.cos(t / 1400 + b.p) * .08;
+    // нитка
+    ctx.globalAlpha = b.a * .8;
+    ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = .8;
+    ctx.beginPath(); ctx.moveTo(x, y + ry + 3);
+    ctx.bezierCurveTo(x - 5, y + ry + 14, x + 5, y + ry + 24, x - 2 + Math.sin(t / 700 + b.p) * 3, y + ry + 38);
+    ctx.stroke();
+    ctx.save(); ctx.translate(x, y); ctx.rotate(tilt);
+    // шар с мягким бликом
+    var g = ctx.createRadialGradient(-rx * .35, -ry * .4, r * .1, 0, 0, ry * 1.1);
+    g.addColorStop(0, '#ffffff'); g.addColorStop(.25, b.col); g.addColorStop(1, b.col);
+    ctx.globalAlpha = b.a; ctx.fillStyle = g;
+    ctx.beginPath(); ctx.ellipse(0, 0, rx, ry, 0, 0, 6.283); ctx.fill();
+    // узелок
+    ctx.beginPath(); ctx.moveTo(-3, ry + 4); ctx.lineTo(3, ry + 4); ctx.lineTo(0, ry - 1); ctx.closePath(); ctx.fillStyle = b.col; ctx.fill();
+    // блик
+    ctx.globalAlpha = b.a * .9; ctx.fillStyle = '#ffffff';
+    ctx.beginPath(); ctx.ellipse(-rx * .38, -ry * .45, rx * .16, ry * .24, -.5, 0, 6.283); ctx.fill();
+    ctx.restore();
   }
   function draw(t) {
     ctx.clearRect(0, 0, W, H);
-    for (var i = 0; i < sparks.length; i++) {
-      var s = sparks[i];
-      if (!still) { s.y += s.vy; s.x += s.vx; if (s.y > H + 8) { s.y = -8; s.x = Math.random() * W; } }
-      var tw = still ? .7 : Math.pow(Math.abs(Math.sin(t / 1000 * s.sp + s.p)), 3);
-      var navy = onNavy(s.y);
-      ctx.globalAlpha = navy ? .25 + .75 * tw : .15 + .6 * tw;
-      ctx.fillStyle = navy ? '#ffffff' : '#e79ab4';
-      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.283); ctx.fill();
-      if (s.star && tw > .35) {
-        var L = 3 + 7 * tw;
-        ctx.strokeStyle = ctx.fillStyle; ctx.lineWidth = .8;
-        ctx.beginPath(); ctx.moveTo(s.x - L, s.y); ctx.lineTo(s.x + L, s.y); ctx.moveTo(s.x, s.y - L); ctx.lineTo(s.x, s.y + L); ctx.stroke();
+    zones.forEach(function (z) {
+      ctx.save(); ctx.beginPath(); ctx.rect(0, z.top, W, z.bottom - z.top); ctx.clip();
+      for (var i = 0; i < balloons.length; i++) {
+        var b = balloons[i];
+        if (b.z !== z) continue;
+        if (!still) { b.y -= b.v; if (b.y < z.top - b.r * 4) balloons[i] = b = balloon(z, false); }
+        drawBalloon(b, still ? 0 : t);
       }
-    }
+      ctx.restore();
+    });
     if (!still) requestAnimationFrame(draw);
   }
   size(); requestAnimationFrame(draw);
