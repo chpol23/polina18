@@ -1,16 +1,16 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta property="og:title" content="Полина 18 · Семейный ужин"><meta property="og:description" content="23 октября, 19:00 · ресторан «Мидийное место»"></head><body>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#c94a74"><meta property="og:title" content="Полина 18 · Семейный ужин"><meta property="og:description" content="23 октября, 19:00 · ресторан «Мидийное место»"></head><body>
 <title>Полина 18 · Семейный ужин</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap">
 <style>
 /* Layout: карточка-приглашение шириной 460px по макету из Figma: синяя шапка с тортом, рваные края, белая бумага, синий подвал; блёстки поверх всего */
 :root {
-  --navy: #13265c;
-  --paper: #f6f8fd;
-  --ink: #15244e;
-  --soft: #7a86a8;
-  --ice: #dfe7fb;
-  --ground: #e9edf6;
+  --navy: #c94a74;
+  --paper: #fff8fa;
+  --ink: #5c1f3a;
+  --soft: #b46c88;
+  --ice: #ffe1ea;
+  --ground: #f8e8ee;
   --script: 'Great Vibes', 'Segoe Script', cursive;
   --body: 'Montserrat', 'Segoe UI', sans-serif;
   color-scheme: light;
@@ -19,7 +19,7 @@
 [hidden] { display: none !important; }
 body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--body); padding-inline: 16px; padding-block: 40px; }
 .card { position: relative; max-width: 460px; margin: 0 auto; background: var(--paper); border-radius: 22px; overflow: hidden;
-  box-shadow: 0 40px 80px -20px rgba(19, 38, 92, .35), 0 10px 30px rgba(19, 38, 92, .12); text-align: center; }
+  box-shadow: 0 40px 80px -20px rgba(160, 40, 85, .30), 0 10px 30px rgba(160, 40, 85, .10); text-align: center; }
 #glitter { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
 
 /* Шапка */
@@ -39,11 +39,11 @@ body { margin: 0; background: var(--ground); color: var(--ink); font-family: var
 /* Обращение */
 .body { padding: 22px 30px 40px; display: grid; justify-items: center; }
 h1 { margin: 0; font-family: var(--script); font-weight: 400; font-size: 46px; line-height: 1.15; color: var(--navy); }
-.text { margin: 16px 0 0; max-width: 372px; font-size: 14px; line-height: 1.7; font-weight: 400; color: #3d4a6e; }
+.text { margin: 16px 0 0; max-width: 372px; font-size: 14px; line-height: 1.7; font-weight: 400; color: #6e3550; }
 .date { margin-top: 30px; font-size: 41px; font-weight: 400; letter-spacing: .01em; color: var(--navy); font-variant-numeric: tabular-nums; line-height: 1.1; }
 .when { margin-top: 12px; font-size: 17px; font-weight: 400; letter-spacing: .25em; text-transform: uppercase; color: var(--soft); }
 .bow { width: 108px; margin-top: 32px; color: var(--navy); transform-origin: 50% 30%; }
-.place-label { margin-top: 14px; font-size: 17px; letter-spacing: .06em; color: #8e98b5; }
+.place-label { margin-top: 14px; font-size: 17px; letter-spacing: .06em; color: #c58aa1; }
 .place { margin-top: 4px; font-size: 16px; font-weight: 500; color: var(--navy); }
 .addr { margin-top: 4px; font-size: 14px; color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
 .addr:hover, .addr:focus-visible { border-bottom-color: var(--soft); outline: none; }
@@ -63,7 +63,7 @@ h1 { margin: 0; font-family: var(--script); font-weight: 400; font-size: 46px; l
   .glow { animation: pulse 2.4s ease-in-out infinite; }
   .bow { animation: sway 5s ease-in-out infinite; }
   .reveal.on { animation: up .9s cubic-bezier(.2,.8,.2,1) both; }
-  .date.on { background: linear-gradient(100deg, var(--navy) 40%, #8fa9ef 50%, var(--navy) 60%) 0 0 / 300% 100%;
+  .date.on { background: linear-gradient(100deg, var(--navy) 40%, #ffc7d8 50%, var(--navy) 60%) 0 0 / 300% 100%;
     -webkit-background-clip: text; background-clip: text; color: transparent; animation: up .9s cubic-bezier(.2,.8,.2,1) both, shine 2.4s .6s ease-in-out both; }
 }
 @keyframes fade { from { opacity: 0; } }
@@ -105,15 +105,15 @@ h1 { margin: 0; font-family: var(--script); font-weight: 400; font-size: 46px; l
     <div class="name">Полина</div>
     <div class="age">мне 18</div>
     <svg class="cake" viewBox="0 0 300 156" width="300" height="156" aria-label="Праздничный торт с тремя свечами">
-      <path d="M48 228 L48 150 Q60 140 72 150 Q84 140 96 150 Q108 140 120 150 Q132 140 144 150 Q156 140 168 150 Q180 140 192 150 Q204 140 216 150 Q228 140 240 150 Q252 140 252 150 L252 228 Z" fill="#f6f8fd"/>
-      <path d="M92 150 L92 98 Q101 90 110 98 Q119 90 128 98 Q137 90 146 98 Q155 90 164 98 Q173 90 182 98 Q191 90 200 98 Q208 92 208 98 L208 150 Z" fill="#f6f8fd"/>
-      <path d="M92 128 Q107 136 122 128 Q137 136 152 128 Q167 136 182 128 Q195 135 208 128" fill="none" stroke="#c4cfeb" stroke-width="2"/>
+      <path d="M48 228 L48 150 Q60 140 72 150 Q84 140 96 150 Q108 140 120 150 Q132 140 144 150 Q156 140 168 150 Q180 140 192 150 Q204 140 216 150 Q228 140 240 150 Q252 140 252 150 L252 228 Z" fill="#fff8fa"/>
+      <path d="M92 150 L92 98 Q101 90 110 98 Q119 90 128 98 Q137 90 146 98 Q155 90 164 98 Q173 90 182 98 Q191 90 200 98 Q208 92 208 98 L208 150 Z" fill="#fff8fa"/>
+      <path d="M92 128 Q107 136 122 128 Q137 136 152 128 Q167 136 182 128 Q195 135 208 128" fill="none" stroke="#f2bfd0" stroke-width="2"/>
       <circle class="glow" cx="117" cy="40" r="16" fill="url(#flameGlow)"/>
       <circle class="glow" cx="150" cy="40" r="16" fill="url(#flameGlow)"/>
       <circle class="glow" cx="183" cy="40" r="16" fill="url(#flameGlow)"/>
-      <rect x="112" y="56" width="10" height="38" rx="2" fill="#dfe7fb"/>
-      <rect x="145" y="56" width="10" height="38" rx="2" fill="#dfe7fb"/>
-      <rect x="178" y="56" width="10" height="38" rx="2" fill="#dfe7fb"/>
+      <rect x="112" y="56" width="10" height="38" rx="2" fill="#ffe1ea"/>
+      <rect x="145" y="56" width="10" height="38" rx="2" fill="#ffe1ea"/>
+      <rect x="178" y="56" width="10" height="38" rx="2" fill="#ffe1ea"/>
       <g>
         <path class="flame" d="M117 52 C110 44 114 36 117 30 C120 36 124 44 117 52 Z" fill="#ffd27a"/>
         <path class="flame" d="M150 52 C143 44 147 36 150 30 C153 36 157 44 150 52 Z" fill="#ffd27a"/>
@@ -147,7 +147,7 @@ h1 { margin: 0; font-family: var(--script); font-weight: 400; font-size: 46px; l
     while (x < 460) { pts.push(x.toFixed(1) + ',' + (4 + r() * 18).toFixed(1)); x += 6 + r() * 12; }
     pts.push('460,' + (4 + r() * 18).toFixed(1));
     var d = el.dataset.tear === 'down' ? 'M0,0 L' + pts.join(' L') + ' L460,0 Z' : 'M0,26 L' + pts.join(' L') + ' L460,26 Z';
-    el.innerHTML = '<path d="' + d + '" fill="#13265c"/>';
+    el.innerHTML = '<path d="' + d + '" fill="#c94a74"/>';
   });
 
   var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -186,7 +186,7 @@ h1 { margin: 0; font-family: var(--script); font-weight: 400; font-size: 46px; l
       var tw = still ? .7 : Math.pow(Math.abs(Math.sin(t / 1000 * s.sp + s.p)), 3);
       var navy = onNavy(s.y);
       ctx.globalAlpha = navy ? .25 + .75 * tw : .15 + .6 * tw;
-      ctx.fillStyle = navy ? '#ffffff' : '#9db0e6';
+      ctx.fillStyle = navy ? '#ffffff' : '#e79ab4';
       ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.283); ctx.fill();
       if (s.star && tw > .35) {
         var L = 3 + 7 * tw;
