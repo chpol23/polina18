@@ -1,0 +1,205 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta property="og:title" content="Полина 18 · Семейный ужин"><meta property="og:description" content="23 октября, 19:00 · ресторан «Мидийное место»"></head><body>
+<title>Полина 18 · Семейный ужин</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap">
+<style>
+/* Layout: карточка-приглашение шириной 460px по макету из Figma: синяя шапка с тортом, рваные края, белая бумага, синий подвал; блёстки поверх всего */
+:root {
+  --navy: #13265c;
+  --paper: #f6f8fd;
+  --ink: #15244e;
+  --soft: #7a86a8;
+  --ice: #dfe7fb;
+  --ground: #e9edf6;
+  --script: 'Great Vibes', 'Segoe Script', cursive;
+  --body: 'Montserrat', 'Segoe UI', sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--body); padding-inline: 16px; padding-block: 40px; }
+.card { position: relative; max-width: 460px; margin: 0 auto; background: var(--paper); border-radius: 22px; overflow: hidden;
+  box-shadow: 0 40px 80px -20px rgba(19, 38, 92, .35), 0 10px 30px rgba(19, 38, 92, .12); text-align: center; }
+#glitter { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+
+/* Шапка */
+.hero { position: relative; background: var(--navy); color: #fff; height: 400px; padding-top: 44px; overflow: hidden; }
+.kicker { font-size: 13px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--ice); }
+.name { font-family: var(--script); font-size: 64px; line-height: 1.1; margin-top: 22px; }
+.age { font-size: 19px; font-weight: 300; letter-spacing: .2em; color: var(--ice); margin-top: 14px; }
+.cake { position: absolute; left: 50%; top: 212px; width: 300px; margin-left: -150px; }
+.flame { transform-box: fill-box; transform-origin: 50% 100%; }
+.glow { opacity: .55; }
+
+/* Рваные края */
+.tear { display: block; width: 100%; height: 26px; position: relative; z-index: 2; }
+.tear.top { margin-top: -1px; height: 30px; }
+.tear.bottom { margin-bottom: -2px; }
+
+/* Обращение */
+.body { padding: 22px 30px 40px; display: grid; justify-items: center; }
+h1 { margin: 0; font-family: var(--script); font-weight: 400; font-size: 46px; line-height: 1.15; color: var(--navy); }
+.text { margin: 16px 0 0; max-width: 372px; font-size: 14px; line-height: 1.7; font-weight: 400; color: #3d4a6e; }
+.date { margin-top: 30px; font-size: 41px; font-weight: 400; letter-spacing: .01em; color: var(--navy); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.when { margin-top: 12px; font-size: 17px; font-weight: 400; letter-spacing: .25em; text-transform: uppercase; color: var(--soft); }
+.bow { width: 108px; margin-top: 32px; color: var(--navy); transform-origin: 50% 30%; }
+.place-label { margin-top: 14px; font-size: 17px; letter-spacing: .06em; color: #8e98b5; }
+.place { margin-top: 4px; font-size: 16px; font-weight: 500; color: var(--navy); }
+.addr { margin-top: 4px; font-size: 14px; color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
+.addr:hover, .addr:focus-visible { border-bottom-color: var(--soft); outline: none; }
+
+/* Подвал */
+.foot { background: var(--navy); color: #fff; font-family: var(--script); font-size: 27px; padding: 22px 20px 40px; }
+
+/* Анимации */
+@media (prefers-reduced-motion: no-preference) {
+  .kicker { animation: fade 1s .2s both; }
+  .name { animation: write 1.8s .45s cubic-bezier(.6,.1,.3,1) both; }
+  .age { animation: fade 1s 1.6s both; }
+  .cake { animation: rise 1.3s 1s cubic-bezier(.2,.8,.2,1) both; }
+  .flame { animation: flick 1.6s ease-in-out infinite alternate; }
+  .flame:nth-of-type(2) { animation-delay: -.5s; animation-duration: 1.3s; }
+  .flame:nth-of-type(3) { animation-delay: -1s; animation-duration: 1.8s; }
+  .glow { animation: pulse 2.4s ease-in-out infinite; }
+  .bow { animation: sway 5s ease-in-out infinite; }
+  .reveal.on { animation: up .9s cubic-bezier(.2,.8,.2,1) both; }
+  .date.on { background: linear-gradient(100deg, var(--navy) 40%, #8fa9ef 50%, var(--navy) 60%) 0 0 / 300% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent; animation: up .9s cubic-bezier(.2,.8,.2,1) both, shine 2.4s .6s ease-in-out both; }
+}
+@keyframes fade { from { opacity: 0; } }
+@keyframes write { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes rise { from { opacity: 0; transform: translateY(40px); } }
+@keyframes flick { 0% { transform: scale(1, 1) rotate(-2deg); } 50% { transform: scale(.92, 1.12) rotate(2deg); } 100% { transform: scale(1.05, .96) rotate(-1deg); } }
+@keyframes pulse { 50% { opacity: .9; } }
+@keyframes sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@keyframes up { from { opacity: 0; transform: translateY(18px); } }
+@keyframes shine { from { background-position: 100% 0; } to { background-position: 0 0; } }
+
+@media (max-width: 400px) {
+  body { padding-block: 16px; }
+  .body { padding-inline: 24px; }
+  .date { font-size: 36px; }
+  .when { font-size: 15px; letter-spacing: .2em; }
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="bow" viewBox="0 0 120 120">
+      <path d="M60 42 C44 18 10 16 13 40 C16 60 46 56 60 46 Z" fill="currentColor"/>
+      <path d="M60 42 C76 18 110 16 107 40 C104 60 74 56 60 46 Z" fill="currentColor"/>
+      <path d="M57 48 C50 70 40 92 28 114 L39 109 L43 118 C53 94 59 72 61 50 Z" fill="currentColor"/>
+      <path d="M63 48 C70 70 80 92 92 114 L81 109 L77 118 C67 94 61 72 59 50 Z" fill="currentColor"/>
+      <ellipse cx="60" cy="45" rx="8" ry="9" fill="currentColor"/>
+      <path d="M22 36 C30 30 44 34 54 42 M98 36 C90 30 76 34 66 42" stroke="rgba(255,255,255,.35)" stroke-width="2" fill="none"/>
+    </symbol>
+    <radialGradient id="flameGlow"><stop offset="0" stop-color="#ffd27a" stop-opacity=".7"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+  </defs>
+</svg>
+
+<article class="card">
+  <canvas id="glitter" aria-hidden="true"></canvas>
+
+  <header class="hero">
+    <div class="kicker">Семейный ужин</div>
+    <div class="name">Полина</div>
+    <div class="age">мне 18</div>
+    <svg class="cake" viewBox="0 0 300 156" width="300" height="156" aria-label="Праздничный торт с тремя свечами">
+      <path d="M48 228 L48 150 Q60 140 72 150 Q84 140 96 150 Q108 140 120 150 Q132 140 144 150 Q156 140 168 150 Q180 140 192 150 Q204 140 216 150 Q228 140 240 150 Q252 140 252 150 L252 228 Z" fill="#f6f8fd"/>
+      <path d="M92 150 L92 98 Q101 90 110 98 Q119 90 128 98 Q137 90 146 98 Q155 90 164 98 Q173 90 182 98 Q191 90 200 98 Q208 92 208 98 L208 150 Z" fill="#f6f8fd"/>
+      <path d="M92 128 Q107 136 122 128 Q137 136 152 128 Q167 136 182 128 Q195 135 208 128" fill="none" stroke="#c4cfeb" stroke-width="2"/>
+      <circle class="glow" cx="117" cy="40" r="16" fill="url(#flameGlow)"/>
+      <circle class="glow" cx="150" cy="40" r="16" fill="url(#flameGlow)"/>
+      <circle class="glow" cx="183" cy="40" r="16" fill="url(#flameGlow)"/>
+      <rect x="112" y="56" width="10" height="38" rx="2" fill="#dfe7fb"/>
+      <rect x="145" y="56" width="10" height="38" rx="2" fill="#dfe7fb"/>
+      <rect x="178" y="56" width="10" height="38" rx="2" fill="#dfe7fb"/>
+      <g>
+        <path class="flame" d="M117 52 C110 44 114 36 117 30 C120 36 124 44 117 52 Z" fill="#ffd27a"/>
+        <path class="flame" d="M150 52 C143 44 147 36 150 30 C153 36 157 44 150 52 Z" fill="#ffd27a"/>
+        <path class="flame" d="M183 52 C176 44 180 36 183 30 C186 36 190 44 183 52 Z" fill="#ffd27a"/>
+      </g>
+    </svg>
+  </header>
+  <svg class="tear top" data-tear="down" viewBox="0 0 460 26" preserveAspectRatio="none" aria-hidden="true"></svg>
+
+  <section class="body">
+    <h1 class="reveal">Дорогие мои!</h1>
+    <p class="text reveal">Я хочу провести этот вечер с самыми родными людьми. Буду счастлива видеть каждого из вас на семейном ужине.</p>
+    <div class="date reveal">23.10.2026</div>
+    <div class="when reveal">Пятница · 19:00</div>
+    <svg class="bow" viewBox="0 0 120 120" width="108" height="108" aria-hidden="true"><use href="#bow"/></svg>
+    <div class="place-label reveal">Ресторан</div>
+    <div class="place reveal">«Мидийное место»</div>
+    <a class="addr reveal" href="https://yandex.ru/maps/?text=%D0%9C%D0%B8%D0%B4%D0%B8%D0%B9%D0%BD%D0%BE%D0%B5%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%2C%20%D1%83%D0%BB.%20%D0%A2%D1%80%D1%83%D0%B4%D0%B0%2C%20181" target="_blank" rel="noopener">ул. Труда, 181</a>
+  </section>
+
+  <svg class="tear bottom" data-tear="up" viewBox="0 0 460 26" preserveAspectRatio="none" aria-hidden="true"></svg>
+  <footer class="foot">с любовью, Полина</footer>
+</article>
+
+<script>
+(function () {
+  // Рваные края
+  function rnd(seed) { return function () { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }; }
+  document.querySelectorAll('.tear').forEach(function (el, i) {
+    var r = rnd(i === 0 ? 17 : 110), pts = [], x = 0;
+    while (x < 460) { pts.push(x.toFixed(1) + ',' + (4 + r() * 18).toFixed(1)); x += 6 + r() * 12; }
+    pts.push('460,' + (4 + r() * 18).toFixed(1));
+    var d = el.dataset.tear === 'down' ? 'M0,0 L' + pts.join(' L') + ' L460,0 Z' : 'M0,26 L' + pts.join(' L') + ' L460,26 Z';
+    el.innerHTML = '<path d="' + d + '" fill="#13265c"/>';
+  });
+
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Появление блоков при прокрутке
+  var items = document.querySelectorAll('.reveal');
+  if (!still && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+    }, { threshold: .2 });
+    items.forEach(function (el, i) { el.style.animationDelay = (i % 4) * 0.08 + 's'; io.observe(el); });
+  }
+
+  // Блёстки поверх всего
+  var card = document.querySelector('.card'), c = document.getElementById('glitter'), ctx = c.getContext('2d');
+  var hero = document.querySelector('.hero'), foot = document.querySelector('.foot');
+  var W = 0, H = 0, sparks = [];
+  function onNavy(y) { return y < hero.offsetHeight || y > foot.offsetTop - 10; }
+  function make(initial) {
+    var y = Math.random() * H;
+    return { x: Math.random() * W, y: y, r: Math.random() * 1.2 + .3, p: Math.random() * 6.28, sp: .6 + Math.random() * 1.6,
+      vy: .05 + Math.random() * .18, vx: (Math.random() - .5) * .08, star: Math.random() < .09 };
+  }
+  function size() {
+    var dpr = window.devicePixelRatio || 1;
+    W = card.offsetWidth; H = card.offsetHeight;
+    c.width = W * dpr; c.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    sparks = []; for (var i = 0; i < Math.round(W * H / 2000); i++) sparks.push(make());
+    if (still) draw(0);
+  }
+  function draw(t) {
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < sparks.length; i++) {
+      var s = sparks[i];
+      if (!still) { s.y += s.vy; s.x += s.vx; if (s.y > H + 8) { s.y = -8; s.x = Math.random() * W; } }
+      var tw = still ? .7 : Math.pow(Math.abs(Math.sin(t / 1000 * s.sp + s.p)), 3);
+      var navy = onNavy(s.y);
+      ctx.globalAlpha = navy ? .25 + .75 * tw : .15 + .6 * tw;
+      ctx.fillStyle = navy ? '#ffffff' : '#9db0e6';
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.283); ctx.fill();
+      if (s.star && tw > .35) {
+        var L = 3 + 7 * tw;
+        ctx.strokeStyle = ctx.fillStyle; ctx.lineWidth = .8;
+        ctx.beginPath(); ctx.moveTo(s.x - L, s.y); ctx.lineTo(s.x + L, s.y); ctx.moveTo(s.x, s.y - L); ctx.lineTo(s.x, s.y + L); ctx.stroke();
+      }
+    }
+    if (!still) requestAnimationFrame(draw);
+  }
+  size(); requestAnimationFrame(draw);
+  window.addEventListener('resize', size);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(size);
+})();
+</script>
+
+</body></html>
